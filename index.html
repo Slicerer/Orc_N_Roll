@@ -4,13 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orc N Roll - Guilde World of Warcraft</title>
-    <link href="styles/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'wow-gold': '#FFB100',
+              'wow-blue': '#0081FF',
+              'wow-red': '#FF0000'
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .wow-button {
+        padding: 0.5rem 1rem;
+        color: #EAB308;
+        border: 1px solid #EAB308;
+        border-radius: 0.25rem;
+        transition: all 0.3s;
+      }
+      .wow-button:hover {
+        background-color: #EAB308;
+        color: white;
+      }
+      .section-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: #EAB308;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Navigation -->
-    <nav class="bg-gray-800 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo" class="h-12">
+    <nav class="bg-gray-800 p-4" style="min-height: 120px;">
+        <div class="container mx-auto flex justify-between items-center " style="height: 100%;">
+            <a href="index.html" class="block cursor-pointer"><img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo" class="h-12"></a>
             <div class="space-x-4">
                 <a href="index.html" class="wow-button">Accueil</a>
                 <a href="recruitment.html" class="wow-button">Recrutement</a>
@@ -22,32 +55,215 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="py-32 text-center">
-        <h1 class="text-6xl font-bold text-yellow-500 mb-8">Welcome to Orc N Roll</h1>
-        <p class="text-2xl text-gray-300 max-w-4xl mx-auto mb-16">Let's take come your spot!</p>
+    <header class="py-12 text-center">
+        <h1 class="text-6xl font-bold text-yellow-500 my-8">Welcome to Orc N' Roll</h1>
+        <p class="text-5xl text-gray-300 max-w-4xl mx-auto">Let's take your spot!</p> 
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
+        <section class="mb-6">
+            <div class="w-1/2 mx-auto">
+                <img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo">
+            </div>
+            
+        </section>
         <!-- À propos -->
-        <section class="mb-16">
+        <section class="mb-16 mx-auto">
             <h2 class="section-title">À propos</h2>
-            <p class="text-gray-300">Description de la guilde et des objectifs...</p>
+            <p>
+                -La guild Orc N' Roll vise à recruter 30 à 33 joueurs avec comme objectif princial "Kil'jaeden".
+                -Il s'agit d'une guild Nord Américaine "francais / anglais / espagnol" 'Langue principale anglais'.
+                Le plus grand défit de BC n'est est souvent mal interprété par les joueurs. C'est pour cela que nous avons décidé de créer Orc N' Roll.
+                Le contenue PVE demande de respecter des mecaniques qui ne changent pas. Toutefois Le nombre de *try* pour bien interprer une mecanique peu varier legerement d'un joueur à l'autre.
+                Le plus grande défi est de trouver des joueurs loyal, fiable et constant pour les présences en raid. 
+                La communication sur les serveurs retails n'est pas un problème mais sur le serveurs qui nous interesse (international) le manque de communication est un facteur majeur. Que nous
+                compton bien prendre en charge sur chez N' Roll !
+            </p>
+
+
+
+
+
+
         </section>
 
         <!-- Recrutement -->
         <section id="recruitment" class="mb-16">
             <h2 class="section-title">Recrutement</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-gray-800 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-4">Tank</h3>
+            <p>
+                Ce que nous cherchons ce sont des joueurs; <br>
+                - Joueurs avec experience en raid. <br>
+                - Obtenir les weapon pvp qui s'avere etre un enorme attout de preformance meme
+                en pve 'mise à part quelque ecception'. <br>
+                - Étude des mecaniques. Voir Onglet "Stratégies".   <br>
+                - Maitriser parfaitement une langu de la guild. <br>
+                - Joueurs avec des talents et rotation optimisés **TALENT ET GEAR PVE**. <br>
+                - Joueurs fiables, loyal et constant.
+                - Être devant les instances de raid 5minutes avant le début du raid avec vos consommables. <br>
+                - Les officiers ne seront pas autorisé a crier ou manqué de respect aux joueurs en comntre partie 
+                on s'entends a se que les joueurs suivent les instruction en raid
+
+
+            
+           
+            <div class="p-12 grid grid-rows-1 md:grid-rows-2 lg:grid-rows-4 gap-6">
+                <h2 class="section-title">Place disponible</h2>
+                <div class="bg-gray-800 p-2 rounded-lg">
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">Officier</h3>
                     <ul class="text-gray-300">
-                        <li>Druide</li>
-                        <li>Paladin</li>
-                        <li>Guerrier</li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Raid Leader</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Role</a>
+                                <p>Le raid leader est le chef de raid, il est le point de contact entre les joueurs et les officiers. Ce que nous recherchons c'est un RL avec une
+                                 experience profonde de "BC" nous recherchons un leader qui est calme et qui des abtitudes naturel pour communiquer avec les joueurs. 
+                                de plus le raid leader devra travailler le CO-leader sur les strategyes et les mecaniques. Dois; parle soit "Anglais, francais" / "Anglais, espagnol" / "Fracais, Espagnol" "ou simplement etre un native speaker NA or british"</p></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>   
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Paladin</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Guerrier</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
-                <!-- Autres sections similaires pour Healer, Melee DPS, Range DPS -->
+                <div class="bg-gray-800 p-2 rounded-lg">
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">Tank</h3>
+                    <ul class="text-gray-300">
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Druide</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>   
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Paladin</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Guerrier</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 p-2 rounded-lg mt-6">
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">Healer</h3>
+                    <ul class="text-gray-300">
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Druide</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Prêtre</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Chaman</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 p-2 rounded-lg mt-6">
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">DPS Mêlée</h3>
+                    <ul class="text-gray-300">
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Guerrier</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Voleur</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-800 p-2 rounded-lg mt-6">
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">DPS Distance</h3>
+                    <ul class="text-gray-300">
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Mage</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Démoniste</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="text-xl font-bold text-yellow-500 mb-2">Chasseur</h4>
+                            <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li><a href="#" class="hover:text-yellow-500">Rotation</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Talents</a></li>
+                                <li><a href="#" class="hover:text-yellow-500">Équipement</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
