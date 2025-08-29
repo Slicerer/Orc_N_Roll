@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loot - Orc N Roll</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'wow-gold': '#FFB100',
+              'wow-blue': '#0081FF',
+              'wow-red': '#FF0000'
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .wow-button {
+        padding: 0.5rem 1rem;
+        color: #EAB308;
+        border: 1px solid #EAB308;
+        border-radius: 0.25rem;
+        transition: all 0.3s;
+      }
+      .wow-button:hover {
+        background-color: #EAB308;
+        color: white;
+      }
+      .section-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: #EAB308;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 p-4" style="min-height: 120px;">
+        <div class="container mx-auto flex justify-between items-center" style="height: 100%;">
+            <a href="index.html" class="block cursor-pointer"><img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo" class="h-12"></a>
+            <div class="space-x-4">
+                <a href="index.html" class="wow-button">Accueil</a>
+                <a href="index.html#contact" class="wow-button">Recrutement</a>
+                <a href="management.html" class="wow-button">Management</a>
+                <a href="strategy.html" class="wow-button">Stratégies</a>
+                <a href="loot.html" class="wow-button">Loot</a>
+                <a href="irl-loot.html" class="wow-button">Loot IRL</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-5xl font-bold text-yellow-500 mb-12 text-center">Système de Loot</h1>
+        <div class="text-center mb-8">
+            <a href="irl-loot.html" class="inline-flex items-center px-6 py-3 border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-colors duration-300 rounded-lg">
+                Voir les récompenses IRL
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-8">
+            <section class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-2xl font-bold text-yellow-500 mb-4">Politique de Distribution</h2>
+                <div class="text-gray-300 space-y-4">
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold text-yellow-500 mb-2">Préparation des Loots</h3>
+                        <p>Les loots seront déterminés à l'avance pour chaque joueur par les officiers avant le premier raid de Karazhan. Cette planification permet d'assurer une distribution équitable et transparente des équipements. Les officiers établiront une liste de priorités pour chaque objet en fonction des besoins de chaque classe et spécialisation.</p>
+                    </div>
+
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold text-yellow-500 mb-2">Système de Roll</h3>
+                        <p>Dans certains cas spécifiques, comme lorsque deux joueurs ont le même niveau d'engagement et de présence, un système de roll sera mis en place. Par exemple, deux mages ayant le même engagement envers la guilde pourraient avoir à roller entre eux sur la trinket réservée aux mages de SSC.</p>
+                    </div>
+
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold text-yellow-500 mb-2">Impartialité des Officiers</h3>
+                        <p>Les officiers doivent maintenir une stricte impartialité dans leurs décisions concernant la distribution du loot. Toutes les décisions seront basées sur des critères objectifs et prédéfinis.</p>
+                    </div>
+
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold text-yellow-500 mb-2">Vérification des Présences</h3>
+                        <p>La vérification des présences en raid sera un facteur déterminant dans l'attribution des loots. Un système de points sera mis en place pour suivre l'assiduité des joueurs.</p>
+                    </div>
+
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold text-yellow-500 mb-2">Priorités par Classe</h3>
+                        <p>Les priorités de loot seront déterminées selon l'importance de l'objet pour chaque classe et spécialisation. Par exemple, certaines trinkets sont plus bénéfiques pour certaines classes, et seront donc attribuées en priorité à ces classes.</p>
+                    </div>
+
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold text-yellow-500 mb-2">Décisions Finales</h3>
+                        <p>Toutes les décisions concernant la distribution des loots seront prises avant le premier raid de Karazhan. Les officiers communiqueront clairement leurs décisions à tous les membres de la guilde pour assurer une totale transparence.</p>
+                        <p class="mt-2">Les décisions seront basées sur :</p>
+                        <ul class="list-disc list-inside text-gray-300 mt-2 space-y-1">
+                            <li>L'optimisation des performances du raid</li>
+                            <li>L'engagement du joueur envers la guilde</li>
+                            <li>La progression générale de l'équipe</li>
+                            <li>Les besoins spécifiques de chaque classe</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gray-800 p-6 rounded-lg">
+                <h2 class="text-2xl font-bold text-yellow-500 mb-4">Critères de Distribution</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl text-wow-blue mb-2">Critères Principaux</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>Engagement envers la guilde (présence aux raids, participation aux activités)</li>
+                            <li>Présence régulière aux raids (assiduité et ponctualité)</li>
+                            <li>Performance et respect des mécaniques de combat</li>
+                            <li>Impact sur l'amélioration globale du raid</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl text-wow-blue mb-2">Système de Roll</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>Utilisé uniquement quand deux joueurs ou plus ont des priorités égales</li>
+                            <li>Le roll doit être validé par un officier</li>
+                            <li>Les joueurs doivent être présents lors du roll</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl text-wow-blue mb-2">Vérification des Présences</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>Un système de points basé sur la présence sera maintenu</li>
+                            <li>Les absences justifiées seront prises en compte</li>
+                            <li>La ponctualité sera également considérée</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-300">
+            <p>&copy; 2025 Orc N Roll. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loot IRL - Orc N Roll</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'wow-gold': '#FFB100',
+              'wow-blue': '#0081FF',
+              'wow-red': '#FF0000'
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      .wow-button {
+        padding: 0.5rem 1rem;
+        color: #EAB308;
+        border: 1px solid #EAB308;
+        border-radius: 0.25rem;
+        transition: all 0.3s;
+      }
+      .wow-button:hover {
+        background-color: #EAB308;
+        color: white;
+      }
+      .section-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: #EAB308;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+      .boss-card {
+        background: linear-gradient(to bottom, #1F2937, #111827);
+        border: 2px solid #EAB308;
+        transition: all 0.3s ease;
+      }
+      .boss-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+      }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 p-4" style="min-height: 120px;">
+        <div class="container mx-auto flex justify-between items-center" style="height: 100%;">
+            <a href="index.html" class="block cursor-pointer"><img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo" class="h-12"></a>
+            <div class="space-x-4">
+                <a href="index.html" class="wow-button">Accueil</a>
+                <a href="index.html#contact" class="wow-button">Recrutement</a>
+                <a href="management.html" class="wow-button">Management</a>
+                <a href="strategy.html" class="wow-button">Stratégies</a>
+                <a href="loot.html" class="wow-button">Loot</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-5xl font-bold text-yellow-500 mb-12 text-center">Récompenses IRL</h1>
+
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Nightbane -->
+            <div class="boss-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Nightbane</h2>
+                    <img src="public/img/tshirt1.png" alt="T-shirt Nightbane" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <p class="text-gray-300">Premier T-shirt exclusif</p>
+                        <p class="text-gray-300 font-semibold">Attribution : Roll aléatoire entre tous les raiders présents</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Magtheridon -->
+            <div class="boss-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Magtheridon</h2>
+                    <img src="public/img/tshirt2.png" alt="T-shirt Magtheridon" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <p class="text-gray-300">T-shirt spécial Healer</p>
+                        <p class="text-gray-300 font-semibold">Attribution : Meilleur healer selon les officiers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gruul -->
+            <div class="boss-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Gruul</h2>
+                    <img src="public/img/tshirt3.png" alt="T-shirt Gruul" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <p class="text-gray-300">T-shirt Tank Edition</p>
+                        <p class="text-gray-300 font-semibold">Attribution : Vote des tanks de la guilde</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kael'thas -->
+            <div class="boss-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Kael'thas</h2>
+                    <img src="public/img/tshirt4.png" alt="T-shirt Kael'thas" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <p class="text-gray-300">T-shirt édition limitée</p>
+                        <p class="text-gray-300 font-semibold">Attribution : Roll aléatoire entre les tanks</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lady Vashj -->
+            <div class="boss-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Lady Vashj</h2>
+                    <img src="public/img/tshirt5.png" alt="T-shirt Lady Vashj" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <div class="space-y-2">
+                        <p class="text-gray-300">T-shirt Champion de la Guilde</p>
+                        <p class="text-gray-300 font-semibold">Attribution : Vote de tous les membres pour le meilleur joueur</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Future Rewards -->
+            <div class="boss-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Archimonde & Illidan</h2>
+                    <div class="h-48 bg-gray-800 rounded-lg mb-4 flex items-center justify-center">
+                        <p class="text-2xl text-yellow-500">À venir</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-gray-300">Récompenses spéciales</p>
+                        <p class="text-gray-300 font-semibold">Détails à venir</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-300">
+            <p>&copy; 2025 Orc N Roll. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
