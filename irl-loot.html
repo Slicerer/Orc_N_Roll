@@ -47,6 +47,45 @@
         box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
       }
     </style>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            margin-top: 2%;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 25px;
+            top: 10px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .boss-card img {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .boss-card img:hover {
+            transform: scale(1.02);
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Navigation -->
@@ -72,7 +111,7 @@
             <div class="boss-card rounded-lg overflow-hidden">
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Nightbane</h2>
-                    <img src="public/img/tshirt1.png" alt="T-shirt Nightbane" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="public/img/nightbane_high_roller.png" alt="T-shirt Nightbane" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
                         <p class="text-gray-300">Premier T-shirt exclusif</p>
                         <p class="text-gray-300 font-semibold">Attribution : Roll aléatoire entre tous les raiders présents</p>
@@ -84,7 +123,7 @@
             <div class="boss-card rounded-lg overflow-hidden">
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Magtheridon</h2>
-                    <img src="public/img/tshirt2.png" alt="T-shirt Magtheridon" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="public/img/Maghte_best_healer.png" alt="T-shirt Magtheridon" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
                         <p class="text-gray-300">T-shirt spécial Healer</p>
                         <p class="text-gray-300 font-semibold">Attribution : Meilleur healer selon les officiers</p>
@@ -96,9 +135,9 @@
             <div class="boss-card rounded-lg overflow-hidden">
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Gruul</h2>
-                    <img src="public/img/tshirt3.png" alt="T-shirt Gruul" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="public/img/Grull_top_dps.png" alt="T-shirt Gruul" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
-                        <p class="text-gray-300">T-shirt Tank Edition</p>
+                        <p class="text-gray-300">T-shirt Top DPS</p>
                         <p class="text-gray-300 font-semibold">Attribution : Vote des tanks de la guilde</p>
                     </div>
                 </div>
@@ -108,7 +147,7 @@
             <div class="boss-card rounded-lg overflow-hidden">
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Kael'thas</h2>
-                    <img src="public/img/tshirt4.png" alt="T-shirt Kael'thas" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="public/img/Kael_tank.png" alt="T-shirt Kael'thas" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
                         <p class="text-gray-300">T-shirt édition limitée</p>
                         <p class="text-gray-300 font-semibold">Attribution : Roll aléatoire entre les tanks</p>
@@ -120,7 +159,7 @@
             <div class="boss-card rounded-lg overflow-hidden">
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Lady Vashj</h2>
-                    <img src="public/img/tshirt5.png" alt="T-shirt Lady Vashj" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="public/img/Vashj_best_player.png" alt="T-shirt Lady Vashj" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
                         <p class="text-gray-300">T-shirt Champion de la Guilde</p>
                         <p class="text-gray-300 font-semibold">Attribution : Vote de tous les membres pour le meilleur joueur</p>
@@ -150,5 +189,33 @@
             <p>&copy; 2025 Orc N Roll. All rights reserved.</p>
         </div>
     </footer>
+    <!-- Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage" alt="T-shirt agrandi">
+    </div>
+
+    <script>
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        document.querySelectorAll('.boss-card img').forEach(img => {
+            img.onclick = function() {
+                modal.style.display = 'flex';
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+            }
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>

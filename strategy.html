@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratégies - Orc N Roll</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .wow-button {
+        padding: 0.5rem 1rem;
+        color: #EAB308;
+        border: 1px solid #EAB308;
+        border-radius: 0.25rem;
+        transition: all 0.3s ease;
+      }
+      .wow-button:hover {
+        background-color: #EAB308;
+        color: white;
+      }
+      .raid-card {
+        background: linear-gradient(to bottom, #1F2937, #111827);
+        border: 2px solid #EAB308;
+        transition: all 0.3s ease;
+      }
+      .raid-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+      }
+      .required-tag {
+        background-color: #EAB308;
+        color: #111827;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: bold;
+      }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 p-4" style="min-height: 120px;">
+        <div class="container mx-auto flex justify-between items-center" style="height: 100%;">
+            <a href="index.html" class="block cursor-pointer"><img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo" class="h-12"></a>
+            <div class="space-x-4">
+                <a href="index.html" class="wow-button">Accueil</a>
+                <a href="index.html#contact" class="wow-button">Recrutement</a>
+                <a href="management.html" class="wow-button">Management</a>
+                <a href="strategy.html" class="wow-button">Stratégies</a>
+                <a href="loot.html" class="wow-button">Loot</a>
+                <a href="irl-loot.html" class="wow-button">Loot IRL</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-5xl font-bold text-yellow-500 mb-12 text-center">Stratégies des Raids</h1>
+
+        <div class="mb-8 bg-gray-800 p-6 rounded-lg border-2 border-yellow-500">
+            <h2 class="text-2xl font-bold text-yellow-500 mb-4">Exigences Minimales</h2>
+            <p class="text-gray-300">Pour chaque raid, nous demandons aux joueurs de :</p>
+            <ul class="list-disc list-inside text-gray-300 mt-4 space-y-2">
+                <li><span class="text-yellow-500 font-bold">Minimum requis :</span> Regarder les vidéos courtes (30 secondes)</li>
+                <li><span class="text-yellow-500">Recommandé :</span> Étudier les guides détaillés de Warcraft Tavern</li>
+            </ul>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Karazhan -->
+            <div class="raid-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Karazhan</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Vidéos Courtes <span class="required-tag">Requis</span></h3>
+                            <a href="https://www.youtube.com/watch?v=Yj1YI-WO47g&list=PL3-I8C6InNxl9dm6qBNfKU1A9ToHoRA47" target="_blank" class="text-yellow-500 hover:underline block">Playlist YouTube - Aperçus 30 sec</a>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Guide Détaillé</h3>
+                            <a href="https://www.warcrafttavern.com/tbc/guides/karazhan/" target="_blank" class="text-yellow-500 hover:underline block">Guide Warcraft Tavern</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gruul -->
+            <div class="raid-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Repaire de Gruul</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Vidéos Courtes <span class="required-tag">Requis</span></h3>
+                            <a href="https://www.youtube.com/watch?v=6e_M_rehVbI&list=PL3-I8C6InNxkexj25f9VmBG95IkB8FnEj" target="_blank" class="text-yellow-500 hover:underline block">Playlist YouTube - Aperçus 30 sec</a>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Guide Détaillé</h3>
+                            <a href="https://www.warcrafttavern.com/tbc/guides/gruuls-lair/" target="_blank" class="text-yellow-500 hover:underline block">Guide Warcraft Tavern</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Magtheridon -->
+            <div class="raid-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Repaire de Magtheridon</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Vidéo Courte <span class="required-tag">Requis</span></h3>
+                            <a href="https://www.youtube.com/watch?v=btuh3DkEepM" target="_blank" class="text-yellow-500 hover:underline block">Vidéo YouTube - Aperçu 30 sec</a>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Guide Détaillé</h3>
+                            <a href="https://www.warcrafttavern.com/tbc/guides/magtheridons-lair/" target="_blank" class="text-yellow-500 hover:underline block">Guide Warcraft Tavern</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SSC -->
+            <div class="raid-card rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Caverne du Sanctuaire du Serpent</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Vidéos Courtes <span class="required-tag">Requis</span></h3>
+                            <a href="https://www.youtube.com/watch?v=C1gwpHaMJxM&list=PL3-I8C6InNxkjzWUMxL-II7GH-1b0vIQV" target="_blank" class="text-yellow-500 hover:underline block">Playlist YouTube - Aperçus 30 sec</a>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Guide Détaillé</h3>
+                            <a href="https://www.warcrafttavern.com/tbc/guides/serpentshrine-cavern/" target="_blank" class="text-yellow-500 hover:underline block">Guide Warcraft Tavern</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Eye -->
+            <div class="raid-card rounded-lg overflow-hidden col-span-1 md:col-span-2">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-4">L'Œil (Donjon de la Tempête)</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Vidéos Courtes <span class="required-tag">Requis</span></h3>
+                            <a href="https://www.youtube.com/watch?v=Fe90Clh-O3E&list=PL3-I8C6InNxnoHlsq7QGaqevdyQ1TAtIU" target="_blank" class="text-yellow-500 hover:underline block">Playlist YouTube - Aperçus 30 sec</a>
+                        </div>
+                        <div>
+                            <h3 class="text-xl text-gray-300 mb-2">Guide Détaillé</h3>
+                            <a href="https://www.warcrafttavern.com/tbc/guides/tempest-keep-the-eye-raid-guide/" target="_blank" class="text-yellow-500 hover:underline block">Guide Warcraft Tavern</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-300">
+            <p>&copy; 2025 Orc N Roll. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
