@@ -6,6 +6,47 @@
     <title>Orc N Roll - Guilde World of Warcraft</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Language system
+        function switchLanguage() {
+            const currentLang = localStorage.getItem('language') || 'en';
+            const newLang = currentLang === 'fr' ? 'en' : 'fr';
+            localStorage.setItem('language', newLang);
+
+            const frElements = document.querySelectorAll('[data-fr]');
+            const enElements = document.querySelectorAll('[data-en]');
+            const langButtons = document.querySelectorAll('#lang-switch, #mobile-lang-switch');
+
+            if (newLang === 'fr') {
+                frElements.forEach(el => el.style.display = '');
+                enElements.forEach(el => el.style.display = 'none');
+                langButtons.forEach(btn => btn.textContent = 'English');
+            } else {
+                frElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = '');
+                langButtons.forEach(btn => btn.textContent = 'Français');
+            }
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLang = localStorage.getItem('language') || 'en';
+            document.documentElement.lang = currentLang;
+            const frElements = document.querySelectorAll('[data-fr]');
+            const enElements = document.querySelectorAll('[data-en]');
+            const langButtons = document.querySelectorAll('#lang-switch, #mobile-lang-switch');
+            
+            if (currentLang === 'fr') {
+                frElements.forEach(el => el.style.display = '');
+                enElements.forEach(el => el.style.display = 'none');
+                langButtons.forEach(btn => btn.textContent = 'English');
+            } else {
+                frElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = '');
+                langButtons.forEach(btn => btn.textContent = 'Français');
+            }
+        });
+    </script>
+    <script>
       tailwind.config = {
         theme: {
           extend: {
@@ -30,6 +71,10 @@
         background-color: #EAB308;
         color: white;
       }
+      .wow-button.active {
+        background-color: #EAB308;
+        color: white;
+      }
       .section-title {
         font-size: 1.875rem;
         font-weight: 700;
@@ -41,24 +86,69 @@
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Navigation -->
-    <nav class="bg-gray-800 p-4" style="min-height: 120px;">
-        <div class="container mx-auto flex justify-between items-center " style="height: 100%;">
+    <nav class="bg-gray-800 p-4" style="min-height: 80px;">
+        <div class="container mx-auto flex justify-between items-center">
             <a href="index.html" class="block cursor-pointer"><img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo" class="h-12"></a>
-            <div class="space-x-4">
-                <a href="index.html" class="wow-button">Accueil</a>
-                <a href="#contact" class="wow-button">Recrutement</a>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden text-yellow-500 hover:text-yellow-400 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Desktop menu -->
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="wow-button active"><span data-fr>Accueil</span><span data-en>Home</span></a>
+                <a href="#contact" class="wow-button"><span data-fr>Recrutement</span><span data-en>Recruitment</span></a>
                 <a href="management.html" class="wow-button">Management</a>
-                <a href="strategy.html" class="wow-button">Stratégies</a>
+                <a href="strategy.html" class="wow-button"><span data-fr>Stratégies</span><span data-en>Strategies</span></a>
                 <a href="loot.html" class="wow-button">Loot</a>
                 <a href="irl-loot.html" class="wow-button">Loot IRL</a>
+                <button id="lang-switch" onclick="switchLanguage()" class="wow-button">English</button>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-800 bg-opacity-95 z-50 md:hidden">
+                <div class="flex flex-col items-center justify-center h-full space-y-4">
+                    <a href="index.html" class="wow-button w-48 text-center"><span data-fr>Accueil</span><span data-en>Home</span></a>
+                    <a href="#contact" class="wow-button w-48 text-center"><span data-fr>Recrutement</span><span data-en>Recruitment</span></a>
+                    <a href="management.html" class="wow-button w-48 text-center">Management</a>
+                    <a href="strategy.html" class="wow-button w-48 text-center"><span data-fr>Stratégies</span><span data-en>Strategies</span></a>
+                    <a href="loot.html" class="wow-button w-48 text-center">Loot</a>
+                    <a href="irl-loot.html" class="wow-button w-48 text-center">Loot IRL</a>
+                    <button id="mobile-lang-switch" onclick="switchLanguage()" class="wow-button w-48 text-center">English</button>
+                </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile menu JavaScript -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
     <!-- Hero Section -->
     <header class="py-12 text-center">
-        <h1 class="text-6xl font-bold text-yellow-500 my-8">Welcome to Orc N' Roll</h1>
-        <p class="text-5xl text-gray-300 max-w-4xl mx-auto">Let's take your spot!</p> 
+        <h1 class="text-6xl font-bold text-yellow-500 my-8">
+            <span data-fr>Bienvenue chez Orc N' Roll</span>
+            <span data-en>Welcome to Orc N' Roll</span>
+        </h1>
+        <p class="text-5xl text-gray-300 max-w-4xl mx-auto">
+            <span data-fr>Prenez votre place !</span>
+            <span data-en>Let's take your spot!</span>
+        </p> 
     </header>
 
     <!-- Main Content -->
@@ -73,13 +163,22 @@
         <section class="mb-16 mx-auto">
             <h2 class="section-title">À propos</h2>
             <p>
-                -La guild Orc N' Roll vise à recruter 30 à 33 joueurs avec comme objectif princial "Kil'jaeden".
-                -Il s'agit d'une guild Nord Américaine "francais / anglais / espagnol" 'Langue principale anglais'.
-                Le plus grand défit de BC n'est est souvent mal interprété par les joueurs. C'est pour cela que nous avons décidé de créer Orc N' Roll.
-                Le contenue PVE demande de respecter des mecaniques qui ne changent pas. Toutefois Le nombre de *try* pour bien interprer une mecanique peu varier legerement d'un joueur à l'autre.
-                Le plus grande défi est de trouver des joueurs loyal, fiable et constant pour les présences en raid. 
-                La communication sur les serveurs retails n'est pas un problème mais sur le serveurs qui nous interesse (international) le manque de communication est un facteur majeur. Que nous
-                compton bien prendre en charge sur chez N' Roll !
+                <div data-fr>
+                    <p>La guilde Orc N' Roll vise à recruter 30 à 33 joueurs avec comme objectif principal "Kil'jaeden".</p>
+                    <p>Il s'agit d'une guilde Nord-Américaine "français / anglais / espagnol" (langue principale : anglais).</p>
+                    <p>Le plus grand défi de BC est souvent mal interprété par les joueurs. C'est pour cela que nous avons décidé de créer Orc N' Roll.</p>
+                    <p>Le contenu PVE demande de respecter des mécaniques qui ne changent pas. Toutefois, le nombre d'essais pour bien interpréter une mécanique peut varier légèrement d'un joueur à l'autre.</p>
+                    <p>Le plus grand défi est de trouver des joueurs loyaux, fiables et constants pour les présences en raid.</p>
+                    <p>La communication sur les serveurs retail n'est pas un problème, mais sur les serveurs qui nous intéressent (international), le manque de communication est un facteur majeur que nous comptons bien prendre en charge chez N' Roll !</p>
+                </div>
+                <div data-en>
+                    <p>The Orc N' Roll guild aims to recruit 30 to 33 players with "Kil'jaeden" as the main objective.</p>
+                    <p>We are a North American guild "French / English / Spanish" (main language: English).</p>
+                    <p>BC's greatest challenge is often misinterpreted by players. That's why we decided to create Orc N' Roll.</p>
+                    <p>PVE content requires following mechanics that don't change. However, the number of tries needed to properly interpret a mechanic may vary slightly from player to player.</p>
+                    <p>The biggest challenge is finding loyal, reliable, and consistent players for raid attendance.</p>
+                    <p>Communication on retail servers is not an issue, but on the servers we're interested in (international), lack of communication is a major factor that we intend to address at N' Roll!</p>
+                </div>
             </p>
 
 
@@ -91,27 +190,42 @@
 
         <!-- Recrutement -->
         <section id="recruitment" class="mb-16">
-            <h2 class="section-title">Recrutement</h2>
-            <p>
-                Ce que nous cherchons ce sont des joueurs; <br>
-                - Joueurs avec experience en raid. <br>
-                - Obtenir les weapon pvp qui s'avere etre un enorme attout de preformance meme
-                en pve 'mise à part quelque ecception'. <br>
-                - Étude des mecaniques. Voir Onglet "Stratégies".   <br>
-                - Maitriser parfaitement une langu de la guild. <br>
-                - Joueurs avec des talents et rotation optimisés **TALENT ET GEAR PVE**. <br>
-                - Joueurs fiables, loyal et constant.
-                - Être devant les instances de raid 5minutes avant le début du raid avec vos consommables. <br>
-                - Les officiers ne seront pas autorisé a crier ou manqué de respect aux joueurs en comntre partie 
-                on s'entends a se que les joueurs suivent les instruction en raid
-
-            </p>
+            <h2 class="section-title"><span data-fr>Recrutement</span><span data-en>Recruitment</span></h2>
+            <div data-fr>
+                <p class="mb-4">Ce que nous cherchons :</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Joueurs avec expérience en raid</li>
+                    <li>Obtenir les armes PvP qui s'avèrent être un énorme atout de performance même en PvE (mis à part quelques exceptions)</li>
+                    <li>Étude des mécaniques (voir onglet "Stratégies")</li>
+                    <li>Maîtriser parfaitement une langue de la guilde</li>
+                    <li>Joueurs avec des talents et rotations optimisés **TALENT ET GEAR PVE**</li>
+                    <li>Joueurs fiables, loyaux et constants</li>
+                    <li>Être devant les instances de raid 5 minutes avant le début du raid avec vos consommables</li>
+                    <li>Les officiers ne seront pas autorisés à crier ou manquer de respect aux joueurs. En contrepartie, nous attendons que les joueurs suivent les instructions en raid</li>
+                </ul>
+            </div>
+            <div data-en>
+                <p class="mb-4">What we're looking for:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Players with raid experience</li>
+                    <li>Obtain PvP weapons which prove to be a huge performance boost even in PvE (with some exceptions)</li>
+                    <li>Study of mechanics (see "Strategies" tab)</li>
+                    <li>Perfect mastery of one guild language</li>
+                    <li>Players with optimized talents and rotations **PVE TALENT AND GEAR**</li>
+                    <li>Reliable, loyal, and consistent players</li>
+                    <li>Be in front of raid instances 5 minutes before raid start with your consumables</li>
+                    <li>Officers will not be allowed to yell or disrespect players. In return, we expect players to follow raid instructions</li>
+                </ul>
+            </div>
             
            
             <div class="p-12 grid grid-rows-1 md:grid-rows-2 lg:grid-rows-4 gap-6">
                
                 <div class="bg-gray-800 p-2 rounded-lg">
-                    <H2 class="text-xl font-bold text-yellow-500 mb-4 text-center">Places disponibles</H2>
+                    <h2 class="text-xl font-bold text-yellow-500 mb-4 text-center">
+                        <span data-fr>Places disponibles</span>
+                        <span data-en>Available Positions</span>
+                    </h2>
                     <h3 class="text-xl font-bold text-yellow-500 mb-4">Officier</h3>
                     <ul class="text-gray-300">
                         <li>
@@ -119,12 +233,19 @@
                             <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="#" class="hover:text-yellow-500">Attentes</a></li>
-                                <ul class="list-disc list-inside ml-4 space-y-2">
+                                <ul class="list-disc list-inside ml-4 space-y-2" data-fr>
                                     <li>Expérience approfondie de Burning Crusade</li>
                                     <li>Leadership calme et naturel</li>
                                     <li>Excellente communication avec les joueurs</li>
-                                    <li>Collaboration avec le CO-leader pour les stratégies</li>
-                                    <li>Langues requises, soit; "Anglais, Français" / "Anglais, Espagnol" / "Français, Espagnol" ou simplement "Native English"</li>
+                                    <li>Collaboration avec le co-leader pour les stratégies</li>
+                                    <li>Langues requises : "Anglais, Français" / "Anglais, Espagnol" / "Français, Espagnol" ou "Anglais natif"</li>
+                                </ul>
+                                <ul class="list-disc list-inside ml-4 space-y-2" data-en>
+                                    <li>In-depth Burning Crusade experience</li>
+                                    <li>Calm and natural leadership</li>
+                                    <li>Excellent communication with players</li>
+                                    <li>Collaboration with co-leader for strategies</li>
+                                    <li>Required languages: "English, French" / "English, Spanish" / "French, Spanish" or "Native English"</li>
                                 </ul>
                             
                             </ul>   
@@ -134,22 +255,32 @@
                             <p class="text-gray-300 mb-4">Player name in game "Ipsum Dolor" (need to be the same on discord)</p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="#" class="hover:text-yellow-500">Attentes</a></li>
-                                <ul class="list-disc list-inside ml-4 space-y-2">
+                                <ul class="list-disc list-inside ml-4 space-y-2" data-fr>
                                     <li>Préparation des stratégies et mécaniques</li>
                                     <li>Collaboration étroite avec le Raid Leader</li>
                                     <li>Observation et feedback constructif aux joueurs</li>
                                     <li>Communication calme et polie</li>
                                     <li>Langues requises : "Anglais, Français" / "Anglais, Espagnol" / "Français, Espagnol"</li>
                                 </ul>
+                                <ul class="list-disc list-inside ml-4 space-y-2" data-en>
+                                    <li>Preparation of strategies and mechanics</li>
+                                    <li>Close collaboration with Raid Leader</li>
+                                    <li>Observation and constructive feedback to players</li>
+                                    <li>Calm and polite communication</li>
+                                    <li>Required languages: "English, French" / "English, Spanish" / "French, Spanish"</li>
+                                </ul>
                 
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Management</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="#" class="hover:text-yellow-500">Attentes</a></li>
-                                <ul class="list-disc list-inside ml-4 space-y-2">
+                                <ul class="list-disc list-inside ml-4 space-y-2" data-fr>
                                     <li>Distribution des loots</li>
                                     <li>Configuration et gestion Discord</li>
                                     <li>Compétences en dessin (un atout)</li>
@@ -157,17 +288,31 @@
                                     <li>Recrutement des joueurs</li>
                                     <li>Langues requises : "Anglais, Français" / "Anglais, Espagnol" / "Français, Espagnol"</li>
                                 </ul>
+                                <ul class="list-disc list-inside ml-4 space-y-2" data-en>
+                                    <li>Loot distribution</li>
+                                    <li>Discord setup and management</li>
+                                    <li>Drawing skills (an asset)</li>
+                                    <li>Raid attendance tracking</li>
+                                    <li>Player recruitment</li>
+                                    <li>Required languages: "English, French" / "English, Spanish" / "French, Spanish"</li>
+                                </ul>
                            
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="bg-gray-800 p-2 rounded-lg">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-4">Tank</h3>
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">
+                        <span data-fr>Tank</span>
+                        <span data-en>Tank</span>
+                    </h3>
                     <ul class="text-gray-300">
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Paladin</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/protection-paladin-tank-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/protection-paladin-tank-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
@@ -176,67 +321,91 @@
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Druide</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/feral-druid-tank-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/feral-druid-tank-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/feral-druid-tank-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/feral-druid-tank-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Guerrier</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/protection-warrior-tank-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/protection-warrior-tank-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/protection-warrior-tank-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/protection-warrior-tank-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="bg-gray-800 p-2 rounded-lg mt-6">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-4">Healer</h3>
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">
+                        <span data-fr>Soigneur</span>
+                        <span data-en>Healer</span>
+                    </h3>
                     <ul class="text-gray-300">
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Druide</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/restoration-druid-healer-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/restoration-druid-healer-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/restoration-druid-healer-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/restoration-druid-healer-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Prêtre</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/holy-priest-healer-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/holy-priest-healer-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/holy-priest-healer-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/holy-priest-healer-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Shaman</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/restoration-shaman-healer-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/restoration-shaman-healer-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/restoration-shaman-healer-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/restoration-shaman-healer-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Paladin</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/holy-paladin-healer-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/holy-paladin-healer-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/holy-paladin-healer-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/holy-paladin-healer-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="bg-gray-800 p-2 rounded-lg mt-6">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-4">DPS Mêlée</h3>
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">
+                        <span data-fr>DPS Mêlée</span>
+                        <span data-en>Melee DPS</span>
+                    </h3>
                     <ul class="text-gray-300">
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Guerrier furie</h4>
@@ -244,54 +413,72 @@
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/fury-warrior-dps-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/fury-warrior-dps-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/fury-warrior-dps-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/fury-warrior-dps-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Guerrier arms</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/arms-warrior-dps-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/arms-warrior-dps-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/arms-warrior-dps-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/arms-warrior-dps-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Voleur</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/rogue-dps-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/rogue-dps-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/rogue-dps-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/rogue-dps-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Shaman amélioration</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/restoration-shaman-healer-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/restoration-shaman-healer-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/restoration-shaman-healer-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/restoration-shaman-healer-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Paladin retribution</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/retribution-paladin-dps-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/retribution-paladin-dps-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/retribution-paladin-dps-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/retribution-paladin-dps-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
 
                 <div class="bg-gray-800 p-2 rounded-lg mt-6">
-                    <h3 class="text-xl font-bold text-yellow-500 mb-4">DPS Distance</h3>
+                    <h3 class="text-xl font-bold text-yellow-500 mb-4">
+                        <span data-fr>DPS Distance</span>
+                        <span data-en>Ranged DPS</span>
+                    </h3>
                     <ul class="text-gray-300">
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Mage</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/frost-mage-dps-pve-guide" class="hover:text-yellow-500">Frost</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/fire-mage-dps-pve-guide" class="hover:text-yellow-500">Fire</a></li>
@@ -300,7 +487,10 @@
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Démoniste</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/demonology-warlock-dps-pve-guide" class="hover:text-yellow-500">Démoniste</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/affliction-warlock-dps-pve-guide" class="hover:text-yellow-500">Affliction</a></li>
@@ -309,7 +499,10 @@
                         </li>
                         <li>
                             <h4 class="text-xl font-bold text-yellow-500 mb-2">Chasseur</h4>
-                            <p class="text-gray-300 mb-4">Player name in game "On vous attends" (need to be the same on discord)</p>
+                            <p class="text-gray-300 mb-4">
+                                <span data-fr>Nom du joueur en jeu "On vous attend" (doit être le même sur Discord)</span>
+                                <span data-en>Player name in game "Waiting for you" (must be the same on Discord)</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/beast-mastery-hunter-dps-pve-guide" class="hover:text-yellow-500">Beast Mastery</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/marksmanship-hunter-dps-pve-guide" class="hover:text-yellow-500">Marksmanship</a></li>
@@ -322,7 +515,7 @@
                          <ul class="list-disc list-inside text-gray-300 space-y-2"> 
                         <li><a href="https://www.icy-veins.com/tbc-classic/balance-druid-dps-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                         <li><a href="https://www.icy-veins.com/tbc-classic/balance-druid-dps-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                        <li><a href="https://www.icy-veins.com/tbc-classic/balance-druid-dps-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                        <li><a href="https://www.icy-veins.com/tbc-classic/balance-druid-dps-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                         </ul>
                         </li>
                         <li>
@@ -331,7 +524,7 @@
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
                                 <li><a href="https://www.icy-veins.com/tbc-classic/elemental-shaman-dps-pve-rotation-cooldowns-abilities" class="hover:text-yellow-500">Rotation</a></li>
                                 <li><a href="https://www.icy-veins.com/tbc-classic/elemental-shaman-dps-pve-spec-builds-talents" class="hover:text-yellow-500">Talents</a></li>
-                                <li><a href="https://www.icy-veins.com/tbc-classic/elemental-shaman-dps-pve-pre-raid-gear" class="hover:text-yellow-500">Équipement pre-raid</a></li>
+                                <li><a href="https://www.icy-veins.com/tbc-classic/elemental-shaman-dps-pve-pre-raid-gear" class="hover:text-yellow-500"><span data-fr>Équipement pré-raid</span><span data-en>Pre-raid gear</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -341,22 +534,49 @@
 
         <!-- Contact -->
         <section id="contact" class="mb-16">
-            <h2 class="section-title">Contact</h2>
-            <ul class="text-gray-300 list-disc pl-6 space-y-2">
-    <li>Faites-nous parvenir un court message de la classe que vous voulez jouer (vous devez posséder ce joueur avec l'attunement pour le raid Karazhan)</li>
-    <li>Une brève description de votre expérience gaming sur PC</li>
-    <li>Qu'est-ce que vous recherchez dans une guilde (vos attentes)</li>
-</ul>
+            <h2 class="section-title">
+                <span data-fr>Contact</span>
+                <span data-en>Contact</span>
+            </h2>
+            <div data-fr>
+                <ul class="text-gray-300 list-disc pl-6 space-y-2">
+                    <li>Faites-nous parvenir un court message de la classe que vous voulez jouer (vous devez posséder ce personnage avec l'attunement pour le raid Karazhan)</li>
+                    <li>Une brève description de votre expérience gaming sur PC</li>
+                    <li>Qu'est-ce que vous recherchez dans une guilde (vos attentes)</li>
+                </ul>
+            </div>
+            <div data-en>
+                <ul class="text-gray-300 list-disc pl-6 space-y-2">
+                    <li>Send us a short message about the class you want to play (you must have this character with Karazhan raid attunement)</li>
+                    <li>A brief description of your PC gaming experience</li>
+                    <li>What you're looking for in a guild (your expectations)</li>
+                </ul>
+            </div>
             <form class="max-w-lg mx-auto">
                 <input type="hidden" name="email" value="imblue_dabedidabeda@outlook.com">
                 <div class="mb-4">
-                    <label for="message" class="block text-gray-300 mb-2">Votre message</label>
+                    <label for="message" class="block text-gray-300 mb-2">
+                        <span data-fr>Votre message</span>
+                        <span data-en>Your message</span>
+                    </label>
                     <textarea id="message" name="message" class="w-full p-2 bg-gray-800 rounded" rows="4" required></textarea>
                 </div>
-                <button type="submit" class="wow-button">Envoyer</button>
+                <button type="submit" class="wow-button">
+                    <span data-fr>Envoyer</span>
+                    <span data-en>Send</span>
+                </button>
             </form>
         </section>
     </main>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-700 transition-all duration-300 opacity-0 pointer-events-none items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+        <span data-fr>Retour en haut</span>
+        <span data-en>Back to home</span>
+    </button>
 
     <!-- Footer -->
     <footer class="bg-gray-800 py-8">
@@ -364,5 +584,27 @@
             <p>&copy; 2025 Orc N Roll. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'pointer-events-none');
+                backToTopButton.classList.add('opacity-100', 'pointer-events-auto', 'flex');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'pointer-events-none');
+                backToTopButton.classList.remove('opacity-100', 'pointer-events-auto', 'flex');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>

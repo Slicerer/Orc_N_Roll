@@ -30,6 +30,10 @@
         background-color: #EAB308;
         color: white;
       }
+      .wow-button.active {
+        background-color: #EAB308;
+        color: white;
+      }
       .section-title {
         font-size: 1.875rem;
         font-weight: 700;
@@ -89,22 +93,147 @@
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Navigation -->
-    <nav class="bg-gray-800 p-4" style="min-height: 120px;">
-        <div class="container mx-auto flex justify-between items-center" style="height: 100%;">
+    <nav class="bg-gray-800 p-4" style="min-height: 80px;">
+        <div class="container mx-auto flex justify-between items-center">
             <a href="index.html" class="block cursor-pointer"><img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo" class="h-12"></a>
-            <div class="space-x-4">
-                <a href="index.html" class="wow-button">Accueil</a>
-                <a href="index.html#contact" class="wow-button">Recrutement</a>
-                <a href="management.html" class="wow-button">Management</a>
-                <a href="strategy.html" class="wow-button">Stratégies</a>
-                <a href="loot.html" class="wow-button">Loot</a>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden text-yellow-500 hover:text-yellow-400 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Desktop menu -->
+            <div class="hidden md:flex space-x-4">
+                <!-- Language toggle button -->
+          
+                <a href="index.html" class="wow-button">
+                    <span data-fr>Accueil</span>
+                    <span data-en>Home</span>
+                </a>
+                <a href="index.html#contact" class="wow-button">
+                    <span data-fr>Recrutement</span>
+                    <span data-en>Recruitment</span>
+                </a>
+                <a href="management.html" class="wow-button">
+                    <span data-fr>Gestion</span>
+                    <span data-en>Management</span>
+                </a>
+                <a href="strategy.html" class="wow-button">
+                    <span data-fr>Stratégies</span>
+                    <span data-en>Strategies</span>
+                </a>
+                <a href="loot.html" class="wow-button">
+                    <span data-fr>Butin</span>
+                    <span data-en>Loot</span>
+                </a>
+                <a href="irl-loot.html" class="wow-button bg-yellow-500 text-gray-900">
+                    <span data-fr>Butin IRL</span>
+                    <span data-en>IRL Loot</span>
+                </a>
+                <button id="lang-switch" onclick="switchLanguage()" class="wow-button">
+                    <span data-fr>English</span>
+                    <span data-en>Français</span>
+                </button>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-800 bg-opacity-95 z-50 md:hidden">
+                <div class="flex flex-col items-center justify-center h-full space-y-4">
+                    <a href="index.html" class="wow-button w-48 text-center">
+                        <span data-fr>Accueil</span>
+                        <span data-en>Home</span>
+                    </a>
+                    <a href="index.html#contact" class="wow-button w-48 text-center">
+                        <span data-fr>Recrutement</span>
+                        <span data-en>Recruitment</span>
+                    </a>
+                    <a href="management.html" class="wow-button w-48 text-center">
+                        <span data-fr>Gestion</span>
+                        <span data-en>Management</span>
+                    </a>
+                    <a href="strategy.html" class="wow-button w-48 text-center">
+                        <span data-fr>Stratégies</span>
+                        <span data-en>Strategies</span>
+                    </a>
+                    <a href="loot.html" class="wow-button w-48 text-center">
+                        <span data-fr>Butin</span>
+                        <span data-en>Loot</span>
+                    </a>
+                    <a href="irl-loot.html" class="wow-button w-48 text-center">
+                        <span data-fr>Butin IRL</span>
+                        <span data-en>IRL Loot</span>
+                    </a>
+                    <button id="mobile-lang-switch" onclick="switchLanguage()" class="wow-button w-48 text-center">English</button>
+                </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile menu and Language Toggle JavaScript -->
+    <script>
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Language system
+        function switchLanguage() {
+            const currentLang = localStorage.getItem('language') || 'en';
+            const newLang = currentLang === 'fr' ? 'en' : 'fr';
+            localStorage.setItem('language', newLang);
+
+            const frElements = document.querySelectorAll('[data-fr]');
+            const enElements = document.querySelectorAll('[data-en]');
+            const langButtons = document.querySelectorAll('#lang-switch, #mobile-lang-switch');
+
+            if (newLang === 'fr') {
+                frElements.forEach(el => el.style.display = '');
+                enElements.forEach(el => el.style.display = 'none');
+                langButtons.forEach(btn => btn.textContent = 'English');
+            } else {
+                frElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = '');
+                langButtons.forEach(btn => btn.textContent = 'Français');
+            }
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLang = localStorage.getItem('language') || 'en';
+            document.documentElement.lang = currentLang;
+            const frElements = document.querySelectorAll('[data-fr]');
+            const enElements = document.querySelectorAll('[data-en]');
+            const langButtons = document.querySelectorAll('#lang-switch, #mobile-lang-switch');
+            
+            if (currentLang === 'fr') {
+                frElements.forEach(el => el.style.display = '');
+                enElements.forEach(el => el.style.display = 'none');
+                langButtons.forEach(btn => btn.textContent = 'English');
+            } else {
+                frElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = '');
+                langButtons.forEach(btn => btn.textContent = 'Français');
+            }
+        });
+    </script>
+
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
-        <h1 class="text-5xl font-bold text-yellow-500 mb-12 text-center">Récompenses IRL</h1>
+        <h1 class="text-5xl font-bold text-yellow-500 mb-12 text-center">
+            <span data-fr>Récompenses IRL</span>
+            <span data-en>IRL Rewards</span>
+        </h1>
 
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Nightbane -->
@@ -113,8 +242,14 @@
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Nightbane</h2>
                     <img src="public/img/nightbane_high_roller.png" alt="T-shirt Nightbane" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
-                        <p class="text-gray-300">Premier T-shirt exclusif</p>
-                        <p class="text-gray-300 font-semibold">Attribution : Roll aléatoire entre tous les raiders présents</p>
+                        <p class="text-gray-300">
+                            <span data-fr>Premier T-shirt exclusif</span>
+                            <span data-en>First exclusive T-shirt</span>
+                        </p>
+                        <p class="text-gray-300 font-semibold">
+                            <span data-fr>Attribution : Roll aléatoire parmi les raiders présents</span>
+                            <span data-en>Attribution: Random roll among all raiders present</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -125,8 +260,14 @@
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Magtheridon</h2>
                     <img src="public/img/Maghte_best_healer.png" alt="T-shirt Magtheridon" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
-                        <p class="text-gray-300">T-shirt spécial Healer</p>
-                        <p class="text-gray-300 font-semibold">Attribution : Meilleur healer selon les officiers</p>
+                        <p class="text-gray-300">
+                            <span data-fr>T-shirt spécial Healer</span>
+                            <span data-en>Special Healer T-shirt</span>
+                        </p>
+                        <p class="text-gray-300 font-semibold">
+                            <span data-fr>Attribution : Meilleur healer selon les officiers</span>
+                            <span data-en>Attribution: Best healer according to officers</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -137,8 +278,14 @@
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Gruul</h2>
                     <img src="public/img/Grull_top_dps.png" alt="T-shirt Gruul" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
-                        <p class="text-gray-300">T-shirt Top DPS</p>
-                        <p class="text-gray-300 font-semibold">Attribution : Vote des tanks de la guilde</p>
+                        <p class="text-gray-300">
+                            <span data-fr>T-shirt Top DPS</span>
+                            <span data-en>Top DPS T-shirt</span>
+                        </p>
+                        <p class="text-gray-300 font-semibold">
+                            <span data-fr>Attribution : Vote des tanks de la guilde</span>
+                            <span data-en>Attribution: Guild tanks' vote</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -149,8 +296,14 @@
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Kael'thas</h2>
                     <img src="public/img/Kael_tank.png" alt="T-shirt Kael'thas" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
-                        <p class="text-gray-300">T-shirt édition limitée</p>
-                        <p class="text-gray-300 font-semibold">Attribution : Roll aléatoire entre les tanks</p>
+                        <p class="text-gray-300">
+                            <span data-fr>T-shirt édition limitée</span>
+                            <span data-en>Limited edition T-shirt</span>
+                        </p>
+                        <p class="text-gray-300 font-semibold">
+                            <span data-fr>Attribution : Roll aléatoire entre les tanks</span>
+                            <span data-en>Attribution: Random roll among tanks</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -161,8 +314,14 @@
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Lady Vashj</h2>
                     <img src="public/img/Vashj_best_player.png" alt="T-shirt Lady Vashj" class="w-full h-96 object-contain rounded-lg mb-4">
                     <div class="space-y-2">
-                        <p class="text-gray-300">T-shirt Champion de la Guilde</p>
-                        <p class="text-gray-300 font-semibold">Attribution : Vote de tous les membres pour le meilleur joueur</p>
+                        <p class="text-gray-300">
+                            <span data-fr>T-shirt Champion de la Guilde</span>
+                            <span data-en>Guild Champion T-shirt</span>
+                        </p>
+                        <p class="text-gray-300 font-semibold">
+                            <span data-fr>Attribution : Vote de tous les membres pour le meilleur joueur</span>
+                            <span data-en>Attribution: All members vote for the best player</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -172,11 +331,20 @@
                 <div class="p-6">
                     <h2 class="text-2xl font-bold text-yellow-500 mb-4">Archimonde & Illidan</h2>
                     <div class="h-48 bg-gray-800 rounded-lg mb-4 flex items-center justify-center">
-                        <p class="text-2xl text-yellow-500">À venir</p>
+                        <p class="text-2xl text-yellow-500">
+                            <span data-fr>À venir</span>
+                            <span data-en>Coming soon</span>
+                        </p>
                     </div>
                     <div class="space-y-2">
-                        <p class="text-gray-300">Récompenses spéciales</p>
-                        <p class="text-gray-300 font-semibold">Détails à venir</p>
+                        <p class="text-gray-300">
+                            <span data-fr>Récompenses spéciales</span>
+                            <span data-en>Special rewards</span>
+                        </p>
+                        <p class="text-gray-300 font-semibold">
+                            <span data-fr>Détails à venir</span>
+                            <span data-en>Details coming soon</span>
+                        </p>
                     </div>
                 </div>
             </div>

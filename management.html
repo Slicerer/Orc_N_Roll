@@ -5,6 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Management - Orc N Roll</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Language system
+        function switchLanguage() {
+            const currentLang = localStorage.getItem('language') || 'en';
+            const newLang = currentLang === 'fr' ? 'en' : 'fr';
+            localStorage.setItem('language', newLang);
+
+            const frElements = document.querySelectorAll('[data-fr]');
+            const enElements = document.querySelectorAll('[data-en]');
+            const langButtons = document.querySelectorAll('#lang-switch, #mobile-lang-switch');
+
+            if (newLang === 'fr') {
+                frElements.forEach(el => el.style.display = '');
+                enElements.forEach(el => el.style.display = 'none');
+                langButtons.forEach(btn => btn.textContent = 'English');
+            } else {
+                frElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = '');
+                langButtons.forEach(btn => btn.textContent = 'Français');
+            }
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentLang = localStorage.getItem('language') || 'en';
+            document.documentElement.lang = currentLang;
+            const frElements = document.querySelectorAll('[data-fr]');
+            const enElements = document.querySelectorAll('[data-en]');
+            const langButtons = document.querySelectorAll('#lang-switch, #mobile-lang-switch');
+            
+            if (currentLang === 'fr') {
+                frElements.forEach(el => el.style.display = '');
+                enElements.forEach(el => el.style.display = 'none');
+                langButtons.forEach(btn => btn.textContent = 'English');
+            } else {
+                frElements.forEach(el => el.style.display = 'none');
+                enElements.forEach(el => el.style.display = '');
+                langButtons.forEach(btn => btn.textContent = 'Français');
+            }
+        });
+    </script>
     <style>
       .wow-button {
         padding: 0.5rem 1rem;
@@ -14,6 +55,10 @@
         transition: all 0.3s ease;
       }
       .wow-button:hover {
+        background-color: #EAB308;
+        color: white;
+      }
+      .wow-button.active {
         background-color: #EAB308;
         color: white;
       }
@@ -37,50 +82,159 @@
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Navigation -->
-    <nav class="bg-gray-800 p-4" style="min-height: 120px;">
-        <div class="container mx-auto flex justify-between items-center" style="height: 100%;">
+    <nav class="bg-gray-800 p-4" style="min-height: 80px;">
+        <div class="container mx-auto flex justify-between items-center">
             <a href="index.html" class="block cursor-pointer"><img src="public/img/logo_orc_n_roll.png" alt="Orc N Roll Logo" class="h-12"></a>
-            <div class="space-x-4">
-                <a href="index.html" class="wow-button">Accueil</a>
-                <a href="index.html#contact" class="wow-button">Recrutement</a>
-                <a href="management.html" class="wow-button">Management</a>
-                <a href="strategy.html" class="wow-button">Stratégies</a>
-                <a href="loot.html" class="wow-button">Loot</a>
-                <a href="irl-loot.html" class="wow-button">Loot IRL</a>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden text-yellow-500 hover:text-yellow-400 focus:outline-none">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Desktop menu -->
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="wow-button">
+                    <span data-fr>Accueil</span>
+                    <span data-en>Home</span>
+                </a>
+                <a href="index.html#contact" class="wow-button">
+                    <span data-fr>Recrutement</span>
+                    <span data-en>Recruitment</span>
+                </a>
+                <a href="management.html" class="wow-button active">
+                    <span data-fr>Management</span>
+                    <span data-en>Management</span>
+                </a>
+                <a href="strategy.html" class="wow-button">
+                    <span data-fr>Stratégies</span>
+                    <span data-en>Strategies</span>
+                </a>
+                <a href="loot.html" class="wow-button">
+                    <span data-fr>Loot</span>
+                    <span data-en>Loot</span>
+                </a>
+                <a href="irl-loot.html" class="wow-button">
+                    <span data-fr>Loot IRL</span>
+                    <span data-en>IRL Loot</span>
+                </a>
+                <button id="lang-switch" onclick="switchLanguage()" class="wow-button">English</button>
+            </div>
+
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-800 bg-opacity-95 z-50 md:hidden">
+                <div class="flex flex-col items-center justify-center h-full space-y-4">
+                    <a href="index.html" class="wow-button w-48 text-center">
+                        <span data-fr>Accueil</span>
+                        <span data-en>Home</span>
+                    </a>
+                    <a href="index.html#contact" class="wow-button w-48 text-center">
+                        <span data-fr>Recrutement</span>
+                        <span data-en>Recruitment</span>
+                    </a>
+                    <a href="management.html" class="wow-button w-48 text-center">
+                        <span data-fr>Management</span>
+                        <span data-en>Management</span>
+                    </a>
+                    <a href="strategy.html" class="wow-button w-48 text-center">
+                        <span data-fr>Stratégies</span>
+                        <span data-en>Strategies</span>
+                    </a>
+                    <a href="loot.html" class="wow-button w-48 text-center">
+                        <span data-fr>Loot</span>
+                        <span data-en>Loot</span>
+                    </a>
+                    <a href="irl-loot.html" class="wow-button w-48 text-center">
+                        <span data-fr>Loot IRL</span>
+                        <span data-en>IRL Loot</span>
+                    </a>
+                    <button id="mobile-lang-switch" onclick="switchLanguage()" class="wow-button w-48 text-center">English</button>
+                </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile menu JavaScript -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
-        <h1 class="text-5xl font-bold text-yellow-500 mb-12 text-center">Management</h1>
+        <h1 class="text-5xl font-bold text-yellow-500 mb-12 text-center">
+            <span data-fr>Management</span>
+            <span data-en>Management</span>
+        </h1>
 
         <!-- E-Sports Coach Section -->
         <section class="mb-16">
-            <h2 class="section-title">Coach E-Sports</h2>
+            <h2 class="section-title">
+                <span data-fr>Coach E-Sports</span>
+                <span data-en>E-Sports Coach</span>
+            </h2>
             <div class="role-card p-6 rounded-lg max-w-4xl mx-auto">
                 <div class="space-y-4">
-                    <h3 class="text-2xl font-bold text-yellow-500">Nous recherchons un Coach E-Sports</h3>
+                    <h3 class="text-2xl font-bold text-yellow-500">
+                        <span data-fr>Nous recherchons un Coach E-Sports</span>
+                        <span data-en>We are looking for an E-Sports Coach</span>
+                    </h3>
                     <div class="space-y-2 text-gray-300">
-                        <p class="font-semibold text-xl mb-4">Responsabilités :</p>
+                        <p class="font-semibold text-xl mb-4">
+                            <span data-fr>Responsabilités :</span>
+                            <span data-en>Responsibilities:</span>
+                        </p>
                         <ul class="list-disc list-inside space-y-2">
-                            <li>Présence en vidéo lors des boss en progression</li>
-                            <li>Analyse en temps réel des stratégies</li>
-                            <li>Conseils tactiques pendant les combats</li>
-                            <li>Configuration et gestion de son système de streaming</li>
+                            <li>
+                                <span data-fr>Présence en vidéo lors des boss en progression</span>
+                                <span data-en>Video presence during progression bosses</span>
+                            </li>
+                            <li>
+                                <span data-fr>Analyse en temps réel des stratégies</span>
+                                <span data-en>Real-time strategy analysis</span>
+                            </li>
+                            <li>
+                                <span data-fr>Conseils tactiques pendant les combats</span>
+                                <span data-en>Tactical advice during fights</span>
+                            </li>
+                            <li>
+                                <span data-fr>Configuration et gestion de son système de streaming</span>
+                                <span data-en>Setup and management of streaming system</span>
+                            </li>
                         </ul>
-                        <p class="font-semibold text-xl mt-6 mb-4">Avantages :</p>
+                        <p class="font-semibold text-xl mt-6 mb-4">
+                            <span data-fr>Avantages :</span>
+                            <span data-en>Benefits:</span>
+                        </p>
                         <ul class="list-disc list-inside space-y-2">
-                            <li>Participation aux raids en mode farming</li>
+                            <li>
+                                <span data-fr>Participation aux raids en mode farming</span>
+                                <span data-en>Participation in farming raids</span>
+                            </li>
                             <li class="text-yellow-500 font-bold relative">
-                                T-shirt E-Sports Coach garanti
+                                <span data-fr>T-shirt E-Sports Coach garanti</span>
+                                <span data-en>Guaranteed E-Sports Coach T-shirt</span>
                                 <span class="absolute -right-2 -top-2 animate-pulse">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                                     </svg>
                                 </span>
                             </li>
-                            <li>Rôle clé dans la progression de la guilde</li>
+                            <li>
+                                <span data-fr>Rôle clé dans la progression de la guilde</span>
+                                <span data-en>Key role in guild progression</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -89,18 +243,33 @@
 
         <!-- Class Leaders Section -->
         <section>
-            <h2 class="section-title">Class Leaders</h2>
+            <h2 class="section-title">
+                <span data-fr>Class Leaders</span>
+                <span data-en>Class Leaders</span>
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Warrior Class Leader -->
                 <div class="role-card rounded-lg overflow-hidden">
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Warrior Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Protection (Tank)</li>
-                                <li>Fury (DPS)</li>
-                                <li>Arms (DPS)</li>
+                                <li>
+                                    <span data-fr>Protection (Tank)</span>
+                                    <span data-en>Protection (Tank)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Fureur (DPS)</span>
+                                    <span data-en>Fury (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Armes (DPS)</span>
+                                    <span data-en>Arms (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -111,11 +280,23 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Paladin Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Protection (Tank)</li>
-                                <li>Holy (Heal)</li>
-                                <li>Retribution (DPS)</li>
+                                <li>
+                                    <span data-fr>Protection (Tank)</span>
+                                    <span data-en>Protection (Tank)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Sacré (Heal)</span>
+                                    <span data-en>Holy (Heal)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Vindicte (DPS)</span>
+                                    <span data-en>Retribution (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -126,11 +307,23 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Druid Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Feral (Tank/DPS)</li>
-                                <li>Restoration (Heal)</li>
-                                <li>Balance (DPS)</li>
+                                <li>
+                                    <span data-fr>Féral (Tank/DPS)</span>
+                                    <span data-en>Feral (Tank/DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Restauration (Heal)</span>
+                                    <span data-en>Restoration (Heal)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Équilibre (DPS)</span>
+                                    <span data-en>Balance (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -141,11 +334,23 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Priest Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Holy (Heal)</li>
-                                <li>Discipline (Heal)</li>
-                                <li>Shadow (DPS)</li>
+                                <li>
+                                    <span data-fr>Sacré (Heal)</span>
+                                    <span data-en>Holy (Heal)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Discipline (Heal)</span>
+                                    <span data-en>Discipline (Heal)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Ombre (DPS)</span>
+                                    <span data-en>Shadow (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -156,11 +361,23 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Shaman Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Restoration (Heal)</li>
-                                <li>Enhancement (DPS)</li>
-                                <li>Elemental (DPS)</li>
+                                <li>
+                                    <span data-fr>Restauration (Heal)</span>
+                                    <span data-en>Restoration (Heal)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Amélioration (DPS)</span>
+                                    <span data-en>Enhancement (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Élémentaire (DPS)</span>
+                                    <span data-en>Elemental (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -171,11 +388,23 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Rogue Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Combat (DPS)</li>
-                                <li>Subtlety (DPS)</li>
-                                <li>Assassination (DPS)</li>
+                                <li>
+                                    <span data-fr>Combat (DPS)</span>
+                                    <span data-en>Combat (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Finesse (DPS)</span>
+                                    <span data-en>Subtlety (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Assassinat (DPS)</span>
+                                    <span data-en>Assassination (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -186,11 +415,23 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Mage Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Fire (DPS)</li>
-                                <li>Frost (DPS)</li>
-                                <li>Arcane (DPS)</li>
+                                <li>
+                                    <span data-fr>Feu (DPS)</span>
+                                    <span data-en>Fire (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Givre (DPS)</span>
+                                    <span data-en>Frost (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Arcane (DPS)</span>
+                                    <span data-en>Arcane (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -201,11 +442,23 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Warlock Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Affliction (DPS)</li>
-                                <li>Demonology (DPS)</li>
-                                <li>Destruction (DPS)</li>
+                                <li>
+                                    <span data-fr>Affliction (DPS)</span>
+                                    <span data-en>Affliction (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Démonologie (DPS)</span>
+                                    <span data-en>Demonology (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Destruction (DPS)</span>
+                                    <span data-en>Destruction (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -216,11 +469,23 @@
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-yellow-500 mb-4">Hunter Leader</h3>
                         <div class="space-y-4">
-                            <p class="text-gray-300">Expertise requise dans toutes les spécialisations :</p>
+                            <p class="text-gray-300">
+                                <span data-fr>Expertise requise dans toutes les spécialisations :</span>
+                                <span data-en>Required expertise in all specializations:</span>
+                            </p>
                             <ul class="list-disc list-inside text-gray-300 space-y-2">
-                                <li>Beast Mastery (DPS)</li>
-                                <li>Marksmanship (DPS)</li>
-                                <li>Survival (DPS)</li>
+                                <li>
+                                    <span data-fr>Maîtrise des bêtes (DPS)</span>
+                                    <span data-en>Beast Mastery (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Précision (DPS)</span>
+                                    <span data-en>Marksmanship (DPS)</span>
+                                </li>
+                                <li>
+                                    <span data-fr>Survie (DPS)</span>
+                                    <span data-en>Survival (DPS)</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
