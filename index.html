@@ -100,7 +100,7 @@
             <!-- Desktop menu -->
             <div class="hidden md:flex space-x-4">
                 <a href="index.html" class="wow-button active"><span data-fr>Accueil</span><span data-en>Home</span></a>
-                <a href="#contact" class="wow-button"><span data-fr>Recrutement</span><span data-en>Recruitment</span></a>
+                <a href="index.html#contact" class="wow-button"><span data-fr>Recrutement</span><span data-en>Recruitment</span></a>
                 <a href="management.html" class="wow-button">Management</a>
                 <a href="strategy.html" class="wow-button"><span data-fr>Stratégies</span><span data-en>Strategies</span></a>
                 <a href="loot.html" class="wow-button">Loot</a>
@@ -112,7 +112,7 @@
             <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-800 bg-opacity-95 z-50 md:hidden">
                 <div class="flex flex-col items-center justify-center h-full space-y-4">
                     <a href="index.html" class="wow-button w-48 text-center"><span data-fr>Accueil</span><span data-en>Home</span></a>
-                    <a href="#contact" class="wow-button w-48 text-center"><span data-fr>Recrutement</span><span data-en>Recruitment</span></a>
+                    <a href="index.html" class="wow-button w-48 text-center"><span data-fr>Recrutement bas de la page</span><span data-en>Recruitment bottom of the page</span></a>
                     <a href="management.html" class="wow-button w-48 text-center">Management</a>
                     <a href="strategy.html" class="wow-button w-48 text-center"><span data-fr>Stratégies</span><span data-en>Strategies</span></a>
                     <a href="loot.html" class="wow-button w-48 text-center">Loot</a>
@@ -552,20 +552,28 @@
                     <li>What you're looking for in a guild (your expectations)</li>
                 </ul>
             </div>
-            <form class="max-w-lg mx-auto">
-                <input type="hidden" name="email" value="imblue_dabedidabeda@outlook.com">
-                <div class="mb-4">
-                    <label for="message" class="block text-gray-300 mb-2">
-                        <span data-fr>Votre message</span>
-                        <span data-en>Your message</span>
-                    </label>
-                    <textarea id="message" name="message" class="w-full p-2 bg-gray-800 rounded" rows="4" required></textarea>
+            <div class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg border-2 border-yellow-500 shadow-xl hover:shadow-yellow-500/20 transition-shadow duration-300">
+                <div class="flex items-center mb-4">
+                    <svg class="w-8 h-8 text-yellow-500 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M21 4H3C1.9 4 1 4.9 1 6v12c0 1.1 0.9 2 2 2h18c1.1 0 2-0.9 2-2V6c0-1.1-0.9-2-2-2zm-1 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+                    </svg>
+                    <h3 class="text-xl font-wow text-yellow-500">
+                        <span data-fr>Contactez-nous en jeu</span>
+                        <span data-en>Contact us in-game</span>
+                    </h3>
                 </div>
-                <button type="submit" class="wow-button">
-                    <span data-fr>Envoyer</span>
-                    <span data-en>Send</span>
-                </button>
-            </form>
+                <div class="bg-gray-900 p-4 rounded border border-gray-700">
+                    <p class="text-gray-300 mb-2">
+                        <span data-fr>Envoyez un courrier en jeu à :</span>
+                        <span data-en>Send in-game mail to:</span>
+                    </p>
+                    <p class="text-2xl text-yellow-500 font-wow mb-4">Skiny</p>
+                    <p class="text-gray-400 text-sm">
+                        <span data-fr>Incluez votre classe et spécialisation souhaitées</span>
+                        <span data-en>Include your desired class and specialization</span>
+                    </p>
+                </div>
+            </div>
         </section>
     </main>
 
